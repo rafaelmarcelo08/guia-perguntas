@@ -16,3 +16,9 @@ body {
 .btn-success, label {
     margin-top: 10px;
 }
+
+.btn-success {
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bolder;
+}
