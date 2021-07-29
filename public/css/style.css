@@ -1,9 +1,16 @@
+body {
+    background-color: #ECEFF1;
+}
+
 .card {
     margin-top: 50px;
+    border-radius: 20px;
 }
 
 .card-header {
     text-align: center;
+    color: #ECEFF1;
+    background-color: black;
 }
 
 .btn-success, label {
