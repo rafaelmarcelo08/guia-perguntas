@@ -1,8 +1,9 @@
 const express = require('express');
+const { createPoolCluster } = require('mysql2');
 const app = express();
 
 const connection = require('./src/database/database');
-const pergutnaModel = require('./src/model/Pergunta');
+const Pergunta = require('./src/model/Pergunta');
 
 connection
     .authenticate()
@@ -32,6 +33,16 @@ app.get('/perguntar', (req, res) => {
 app.post('/salvarpergunta', (req, res) => {
     let { titulo } = req.body;
     let { descricao } = req.body;
+
+    Pergunta.create(
+        {
+            titulo: titulo,
+            descricao: descricao
+        }
+    ).then(() => {
+        console.log("Pergunta salva com sucesso.");
+        res.redirect('/');
+    });
 
     console.log('Titulo:' + titulo + ' ' + 'descricao:' + descricao);
 });
