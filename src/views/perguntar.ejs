@@ -13,13 +13,11 @@
                     <div class="card-body">
                         <form action="/salvarpergunta" method="POST">
                             <label>Título</label>
-                            <input type="text" placeholder="Título" class="form-control">
+                            <input type="text" placeholder="Título" name="titulo" class="form-control">
                             <label>Descrição</label>
-                            <textarea type="text" placeholder="Descreva sua pergunta aqui" class="form-control"
-                                rows="3"></textarea>
-                            <div class="d-flex justify-content-end">
-                                <button class="btn btn-success">Perguntar</button>
-                            </div>
+                            <textarea type="text" name="descricao" placeholder="Descreva sua pergunta aqui"
+                                class="form-control" rows="3"></textarea>
+                            <button type="submit" class="btn btn-success">Perguntar</button>
                         </form>
                     </div>
 
