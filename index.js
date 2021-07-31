@@ -22,7 +22,12 @@ app.set('views', __dirname + '/src/views');
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    Pergunta.findAll({ raw: true })
+    Pergunta.findAll({
+        raw: true,
+        order: [
+            ['createdAt', 'DESC']
+        ]
+    })
         .then((perguntas) => {
             res.render('index',
                 {
