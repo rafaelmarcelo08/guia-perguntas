@@ -69,10 +69,14 @@ app.get('/pergunta/:id', (req, res) => {
     )
         .then((pergunta) => {
             if (pergunta == undefined) {
-                console.log('Não encontrie nenhum ID: ' + id);
+                console.log('Não encontrei nenhum ID: ' + id);
                 res.redirect('/');
             } else {
-                res.render('pergunta');
+                res.render('pergunta',
+                    {
+                        pergunta: pergunta
+                    }
+                );
             }
         });
 });
