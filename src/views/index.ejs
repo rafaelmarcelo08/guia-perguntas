@@ -3,5 +3,40 @@
     <body>
         <%- include("partials/navbar.ejs")%>
 
+            <div class="container">
+                <hr />
+                <div class="tituloListagem">
+                    <h1>Lista de perguntas</h1>
+                </div>
+                <hr />
+
+                <a href="/perguntar" class="btn btn-success">Fazer uma pergunta</a>
+                
+                <hr />
+                
+                <% perguntas.forEach((pergunta)=> {%>
+                    <div class="card">
+
+                        <div class="card-header">
+                            <h5>
+                                <%= pergunta.titulo %>
+                            </h5>
+                        </div>
+
+                        <div class="card-body">
+                            <p>
+                                <%= pergunta.descricao %>
+                            </p>
+                        </div>
+
+                        <div class="card-footer">
+                            <button class="btn btn-success">Responder</button>
+                        </div>
+
+                    </div>
+
+                    <% }) %>
+            </div>
+
     </body>
     <%- include("partials/footer.ejs")%>
