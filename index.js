@@ -57,8 +57,20 @@ app.post('/salvarpergunta', (req, res) => {
     });
 });
 
-app.post('/', (req, res) => {
-   
+app.post('/responder', (req, res) => {
+    let { resposta } = req.body;
+    let { perguntaID } = req.body;
+
+    Resposta.create(
+        {
+            corpo: resposta,
+            perguntaID: perguntaID
+        }
+    ).then(() => {
+        console.log('Resposta criada na pergunta');
+        res.redirect('/pergunta/' + perguntaID);
+    });
+
 });
 
 app.get('/pergunta/:id', (req, res) => {
