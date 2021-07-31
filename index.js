@@ -1,5 +1,4 @@
 const express = require('express');
-const { createPoolCluster } = require('mysql2');
 const app = express();
 
 const connection = require('./src/database/database');
@@ -23,7 +22,14 @@ app.set('views', __dirname + '/src/views');
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-    res.render('index');
+    Pergunta.findAll({ raw: true })
+        .then((perguntas) => {
+            res.render('index',
+                {
+                    perguntas: perguntas
+                });
+        });
+
 });
 
 app.get('/perguntar', (req, res) => {
@@ -43,8 +49,6 @@ app.post('/salvarpergunta', (req, res) => {
         console.log("Pergunta salva com sucesso.");
         res.redirect('/');
     });
-
-    console.log('Titulo:' + titulo + ' ' + 'descricao:' + descricao);
 });
 
 app.listen(8080, () => {
