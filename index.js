@@ -56,6 +56,27 @@ app.post('/salvarpergunta', (req, res) => {
     });
 });
 
+app.get('/pergunta/:id', (req, res) => {
+    let { id } = req.params;
+
+    Pergunta.findOne(
+        {
+            raw: true,
+            where: {
+                id: id
+            }
+        }
+    )
+        .then((pergunta) => {
+            if (pergunta == undefined) {
+                console.log('Não encontrie nenhum ID: ' + id);
+                res.redirect('/');
+            } else {
+                res.render('pergunta');
+            }
+        });
+});
+
 app.listen(8080, () => {
     console.log('App rodando.');
 });
