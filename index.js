@@ -1,6 +1,17 @@
 const express = require('express');
 const app = express();
 
+const connection = require('./src/database/database');
+
+connection
+    .authenticate()
+    .then(() => {
+        console.log('Conexão feita com o banco');
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -21,7 +32,7 @@ app.post('/salvarpergunta', (req, res) => {
     let { titulo } = req.body;
     let { descricao } = req.body;
 
-    console.log('Titulo:' + titulo + ' ' + 'descricao:' + descricao );
+    console.log('Titulo:' + titulo + ' ' + 'descricao:' + descricao);
 });
 
 app.listen(8080, () => {
