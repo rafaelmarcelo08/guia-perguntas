@@ -15,15 +15,35 @@
                 <hr />
 
                 <form action="/responder" method="POST">
-                    <h3 class="tituloListagem">Lista de respostas da pergunta</h3>
+                    <h3 class="tituloListagem">Resposta</h3>
                     <hr />
 
                     <label>Informe sua resposta:</label>
                     <textarea rows="3" name="resposta" placeholder="Insira sua resposta aqui"
                         class="form-control"></textarea>
-                        <input type="hidden" name="perguntaID" value="<%=pergunta.id%>">
+                    <input type="hidden" name="perguntaID" value="<%=pergunta.id%>">
                     <button type="submit" class="btn btn-success">Responder</button>
                 </form>
+
+                <hr />
+                <div class="tituloListagem">
+                    <h2> Lista de respostas da pergunta</h2>
+                </div>
+                <hr />
+
+                <% respostas.forEach((resposta)=> {%>
+                    <div class="card">
+
+                        <div class="card-body">
+                            <p>
+                                <%= resposta.corpo %>
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <% }) %>
+
             </div>
 
     </body>

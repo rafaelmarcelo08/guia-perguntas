@@ -89,11 +89,25 @@ app.get('/pergunta/:id', (req, res) => {
                 console.log('Não encontrei nenhum ID: ' + id);
                 res.redirect('/');
             } else {
-                res.render('pergunta',
+                Resposta.findAll(
                     {
-                        pergunta: pergunta
+                        raw: false,
+                        where: {
+                            perguntaID: pergunta.id
+                        },
+                        order: [
+                            ['createdAt', 'DESC']
+                        ]
                     }
-                );
+                ).then((respostas) => {
+                    res.render('pergunta',
+                        {
+                            pergunta: pergunta,
+                            respostas: respostas
+                        }
+                    );
+                });
+
             }
         });
 });
